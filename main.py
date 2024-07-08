@@ -1,5 +1,6 @@
 import pandas as pd
 from glob import glob
+import os
 
 if __name__ == "__main__":
     
@@ -41,6 +42,8 @@ if __name__ == "__main__":
     df = df[(df['Year'] == YEAR) & (df['Month'] == MONTH)]
     
     pivot = df.pivot_table(index='BotName', columns='RetrievalStatus', values='POLICYID', aggfunc='count')
+    
+    os.makedirs('./results', exist_ok=True)
     
     with pd.ExcelWriter(f'./results/{year} {month} - Itemized Statement Invoicing.xlsx') as writer:
         df.to_excel(writer, sheet_name='Itemized Statement', index=False)
