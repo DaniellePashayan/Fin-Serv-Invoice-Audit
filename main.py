@@ -4,9 +4,8 @@ import os
 
 if __name__ == "__main__":
     
-    # MONTH, YEAR = 6, 2024
-    MONTH = int(input("Enter the month: "))
-    YEAR = int(input("Enter the year: "))
+    MONTH = int(input("Enter the month (M): "))
+    YEAR = int(input("Enter the year (YYYY): "))
     month = str(MONTH).zfill(2)
     year = str(YEAR)
 
