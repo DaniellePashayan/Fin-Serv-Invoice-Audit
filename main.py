@@ -40,6 +40,12 @@ if __name__ == "__main__":
     # keep rows where df['Year'] == curr_year and df['Month'] == curr_month
     df = df[(df['Year'] == YEAR) & (df['Month'] == MONTH)]
     
+    # filter created date oldest to newest
+    df = df.sort_values(by='CreatedDate', ascending=True)
+    
+    # remove duplicates on all columns except CreatedDate
+    df = df.drop_duplicates(subset=df.columns.difference(['CreatedDate', 'LastModifiedDate']))
+    
     pivot = df.pivot_table(index='BotName', columns='RetrievalStatus', values='POLICYID', aggfunc='count')
     
     os.makedirs('./results', exist_ok=True)
